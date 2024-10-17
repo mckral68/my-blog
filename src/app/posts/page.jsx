@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
 
   useEffect(() => {
     const fetchPosts = async () => {
