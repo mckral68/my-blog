@@ -1,5 +1,5 @@
 "use client";
-import Loadingg from "../components/loading";
+import Loadingg from "../../components/loading";
 const Loading = () => {
   return <Loadingg />;
 };

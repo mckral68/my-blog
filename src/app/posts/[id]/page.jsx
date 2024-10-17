@@ -13,11 +13,7 @@ export default async function PostDetail({ params }) {
       <div className="bg-white shadow-md rounded-lg p-6">
         <h1 className="text-3xl font-bold text-gray-800 mb-4">{post.title}</h1>
         <p className="text-gray-600 leading-relaxed mb-6">{post.content}</p>
-        <Link
-          href={post.link}
-          target="_blank"
-          className="text-gray-600 leading-relaxed mb-6"
-        >
+        <Link href={post.link} target="_blank" className="text-gray-600 leading-relaxed mb-6">
           İndirim için tıklayınız
         </Link>
       </div>
