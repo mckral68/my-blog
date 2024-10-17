@@ -61,6 +61,7 @@ const ContactPage = () => {
         setStatus("Bir hata oluştu. Lütfen tekrar deneyin.");
       }
     } catch (error) {
+      console.error("Hata:", error);
       setStatus("Bir hata oluştu. Lütfen tekrar deneyin.");
     }
   };

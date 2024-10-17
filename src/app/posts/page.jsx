@@ -21,26 +21,6 @@ export default function Home() {
     fetchPosts();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("/posts/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title, content }),
-    });
-
-    if (response.ok) {
-      const newPost = await response.json();
-      setPosts([...posts, newPost]);
-      setTitle("");
-      setContent("");
-    } else {
-      console.error("Failed to create post");
-    }
-  };
-
   return (
     <div className="container mx-auto p-6 bg-gray-50">
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Gönderiler</h1>
