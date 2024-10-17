@@ -26,6 +26,8 @@ const Navbar = () => {
         <Link href="/" className="text-white text-lg font-bold">
           Oğuzhan Atılgan
         </Link>
+        <ThemeSwitch />
+
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -45,7 +47,6 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <ThemeSwitch />
         </div>
       </div>
       {/* Mobil Menü */}
