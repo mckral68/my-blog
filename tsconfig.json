@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/contact/page.jsx"
-  ],
+, "src/app/utils/authOptions.jsx"  ],
   "exclude": ["node_modules"]
 }
