@@ -67,11 +67,17 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-8 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
       <h1 className="text-3xl font-bold mb-4">İletişim</h1>
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-gray-100 dark:bg-gray-800 p-6 rounded shadow-md"
+      >
         <div className="mb-4">
-          <label className="block text-gray-700" htmlFor="name">
+          <label
+            className="block text-gray-700 dark:text-gray-300"
+            htmlFor="name"
+          >
             Ad Soyad
           </label>
           <input
@@ -79,12 +85,15 @@ const ContactPage = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded"
+            className="mt-1 block w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700" htmlFor="email">
+          <label
+            className="block text-gray-700 dark:text-gray-300"
+            htmlFor="email"
+          >
             E-posta
           </label>
           <input
@@ -92,36 +101,41 @@ const ContactPage = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded"
+            className="mt-1 block w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700" htmlFor="message">
+          <label
+            className="block text-gray-700 dark:text-gray-300"
+            htmlFor="message"
+          >
             Mesaj
           </label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
-            className="mt-1 block w-full p-2 border border-gray-300 rounded"
+            className="mt-1 block w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
             rows="4"
             required
           ></textarea>
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
         >
           Gönder
         </button>
       </form>
-      {status && <p className="mt-4 text-gray-600">{status}</p>}
+      {status && (
+        <p className="mt-4 text-gray-600 dark:text-gray-400">{status}</p>
+      )}
 
       <div className="mt-8">
         <h2 className="text-2xl font-bold">Bize Ulaşın</h2>
         <div className="mt-4">
-          <p className="text-gray-700">Sosyal Medya:</p>
+          <p className="text-gray-700 dark:text-gray-300">Sosyal Medya:</p>
           <ul className="flex space-x-2 mt-2">
             {socialMediaLinks.map((link, index) => (
               <li key={index} className="flex items-center">
@@ -129,7 +143,7 @@ const ContactPage = () => {
                 <Link
                   target="_blank"
                   href={link.href}
-                  className="text-blue-500 hover:underline"
+                  className="text-blue-500 hover:underline dark:text-blue-400"
                 >
                   {link.name}
                 </Link>

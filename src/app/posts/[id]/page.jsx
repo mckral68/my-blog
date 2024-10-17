@@ -9,18 +9,20 @@ export default async function PostDetail({ params }) {
     return <h1>Post not found</h1>;
   }
   return (
-    <div className="container mx-auto p-6 bg-gray-50">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">{post.title}</h1>
-        <p className="text-gray-600 leading-relaxed mb-6">{post.content}</p>
-        <Link href={post.link} target="_blank" className="text-gray-600 leading-relaxed mb-6">
+    <div className="container mx-auto p-6">
+      <div className=" border rounded-lg p-6">
+        <h1 className="text-3xl font-bold  mb-4">{post.title}</h1>
+        <p className=" leading-relaxed mb-6">{post.content}</p>
+        <Link
+          href={post.link}
+          target="_blank"
+          className=" leading-relaxed mb-6"
+        >
           İndirim için tıklayınız
         </Link>
       </div>
-      <Link href="/posts">
-        <p className="mt-4 text-blue-600 hover:underline cursor-pointer">
-          Gönderilere dön
-        </p>
+      <Link href="/posts" className="border">
+        <p className="mt-4 hover:underline cursor-pointer">Gönderilere dön</p>
       </Link>
     </div>
   );

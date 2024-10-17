@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import ThemeSwitch from "./ThemeSwitch";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +21,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-gray-800 p-4 relative">
+    <nav className="bg-gray-800 dark:bg-gray-900 p-4 relative">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-white text-lg font-bold">
           Oğuzhan Atılgan
@@ -39,16 +40,17 @@ const Navbar = () => {
             <Link
               href={item.href}
               key={index}
-              className="text-gray-300 hover:text-white"
+              className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
             >
               {item.name}
             </Link>
           ))}
+          <ThemeSwitch />
         </div>
       </div>
       {/* Mobil Menü */}
       <div
-        className={`fixed inset-y-0 left-0 bg-gray-800 transition-transform transform ${
+        className={`fixed inset-y-0 left-0 bg-gray-800 dark:bg-gray-900 transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:hidden w-2/3`}
       >
@@ -67,7 +69,7 @@ const Navbar = () => {
               onClick={closeMenu}
               href={item.href}
               key={index}
-              className="text-gray-300 hover:text-white"
+              className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
             >
               {item.name}
             </Link>

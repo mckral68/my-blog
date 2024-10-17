@@ -20,19 +20,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container mx-auto p-6 bg-gray-50">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Gönderiler</h1>
+    <div className="container mx-auto p-6 ">
+      <h1 className="text-3xl font-bold mb-6">Gönderiler</h1>
       <ul className="space-y-6">
         {posts.map((post) => (
           <li
             key={post.id}
-            className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-xl transition-shadow duration-300 bg-white"
+            className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-xl transition-shadow duration-300 "
           >
-            <h2 className="text-2xl font-semibold text-gray-800 mb-3">
-              {post.title}
-            </h2>
+            <h2 className="text-2xl font-semibold mb-3">{post.title}</h2>
             <Link
-              className="text-blue-600 hover:underline cursor-pointer"
+              className="hover:underline cursor-pointer"
               href={`/posts/${post.id}`}
             >
               Detayları Göster
