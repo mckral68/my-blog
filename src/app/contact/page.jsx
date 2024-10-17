@@ -72,7 +72,7 @@ const ContactPage = () => {
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
         <div className="mb-4">
           <label className="block text-gray-700" htmlFor="name">
-            İsim
+            Ad Soyad
           </label>
           <input
             type="text"
@@ -122,7 +122,7 @@ const ContactPage = () => {
         <h2 className="text-2xl font-bold">Bize Ulaşın</h2>
         <div className="mt-4">
           <p className="text-gray-700">Sosyal Medya:</p>
-          <ul className="flex space-x-4 mt-2">
+          <ul className="flex space-x-2 mt-2">
             {socialMediaLinks.map((link, index) => (
               <li key={index} className="flex items-center">
                 {link.icon}

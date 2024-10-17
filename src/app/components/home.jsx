@@ -32,7 +32,7 @@ export const HomePage = () => {
           Bloğuma Hoş Geldiniz!
         </h1>
         <p className="mt-2 text-gray-600">
-          En güncel teknolojirle ilgili haberler, ipuçları ve ilham verici
+          En güncel teknolojilerle ilgili gelişmeler, ipuçları ve ilham verici
           makale ve eğitimler için doğru yerdesiniz.
         </p>
       </header>

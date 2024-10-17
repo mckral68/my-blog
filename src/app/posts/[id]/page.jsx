@@ -19,6 +19,7 @@ export default async function PostDetail({ params }) {
           Gönderilere dön
         </p>
       </Link>
+      
     </div>
   );
 }
