@@ -4,10 +4,10 @@ const prisma = new PrismaClient();
 
 export async function PUT(request, { params }) {
   const { id } = params; // Dinamik parametreyi al
-  const { title, content } = await request.json();
+  const { title, content, link } = await request.json();
   const updatedPost = await prisma.post.update({
     where: { id: parseInt(id) },
-    data: { title, content },
+    data: { title, content, link },
   });
   return new Response(JSON.stringify(updatedPost), {
     status: 200,

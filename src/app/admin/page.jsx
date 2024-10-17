@@ -7,44 +7,56 @@ import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
   const router = useRouter();
-  const [content, setContent] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",
+    link: "",
+  });
   const [posts, setPosts] = useState([]);
-  const [title, setTitle] = useState("");
   const [editingPostId, setEditingPostId] = useState(null);
-  const [loading, setLoading] = useState(false); // Yükleme durumu
+  const [loading, setLoading] = useState(false);
   const { data: session, status } = useSession();
+
   useEffect(() => {
     if (status === "loading") return;
     if (!session) {
       router.push("/admin/login");
+    } else {
+      fetchPosts();
     }
-    fetchPosts();
   }, [session, status, router]);
+
   const fetchPosts = async () => {
-    setLoading(true); // Yüklemeyi başlat
+    setLoading(true);
     const response = await fetch("/posts/api");
     if (!response.ok) {
       console.error("Failed to fetch posts");
-      setLoading(false); // Yüklemeyi bitir
-      return;
+    } else {
+      const data = await response.json();
+      setPosts(data);
     }
-    const data = await response.json();
-    setPosts(data);
-    setLoading(false); // Yüklemeyi bitir
+    setLoading(false);
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const method = editingPostId ? "PUT" : "POST";
     const url = editingPostId ? `/posts/api/${editingPostId}` : "/posts/api";
 
-    setLoading(true); // Yüklemeyi başlat
+    setLoading(true);
     const response = await fetch(url, {
       method,
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content }),
+      body: JSON.stringify(formData),
     });
+
     if (response.ok) {
       const newPost = await response.json();
       if (editingPostId) {
@@ -54,21 +66,25 @@ export default function AdminDashboard() {
       } else {
         setPosts([...posts, newPost]);
       }
-      setTitle("");
-      setContent("");
+      setFormData({ title: "", content: "", link: "" });
       setEditingPostId(null);
     } else {
       console.error("Failed to save post");
     }
-    setLoading(false); // Yüklemeyi bitir
+    setLoading(false);
   };
+
   const handleEdit = (post) => {
-    setTitle(post.title);
-    setContent(post.content);
+    setFormData({
+      title: post.title,
+      content: post.content,
+      link: post.link || "",
+    });
     setEditingPostId(post.id);
   };
+
   const handleDelete = async (id) => {
-    setLoading(true); // Yüklemeyi başlat
+    setLoading(true);
     const response = await fetch(`/posts/api/${id}`, {
       method: "DELETE",
     });
@@ -78,31 +94,42 @@ export default function AdminDashboard() {
     } else {
       console.error("Failed to delete post");
     }
-    setLoading(false); // Yüklemeyi bitir
+    setLoading(false);
   };
 
   if (loading) {
-    return <Loading />; // Yükleme durumu varsa yükleme bileşenini göster
+    return <Loading />;
   }
   if (!session) return null;
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold">Admin Dashboard</h1>
       <form onSubmit={handleSubmit} className="mb-4">
         <input
           type="text"
+          name="title"
           placeholder="Başlık"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formData.title}
+          onChange={handleChange}
           className="border p-2 w-full mb-2"
           required
         />
         <textarea
+          name="content"
           placeholder="İçerik"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
+          value={formData.content}
+          onChange={handleChange}
           className="border p-2 w-full mb-2"
           required
+        />
+        <input
+          type="text"
+          name="link"
+          placeholder="Link (isteğe bağlı)"
+          value={formData.link}
+          onChange={handleChange}
+          className="border p-2 w-full mb-2"
         />
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">
           {editingPostId ? "Güncelle" : "Post Ekle"}
@@ -112,9 +139,11 @@ export default function AdminDashboard() {
         {posts.map((post) => (
           <li key={post.id} className="my-2 p-4 border rounded shadow">
             <h2 className="font-semibold">{post.title}</h2>
-            <Link href={`/posts/${post.id}`}>
-              <p className="text-blue-500">Detayları Göster</p>
-            </Link>
+            {post.link && (
+              <Link href={post.link}>
+                <p className="text-blue-500">Detayları Göster</p>
+              </Link>
+            )}
             <button
               onClick={() => handleEdit(post)}
               className="bg-yellow-500 text-white p-2 rounded ml-2"

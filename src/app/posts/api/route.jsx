@@ -10,15 +10,3 @@ export async function GET() {
   });
 }
 
-export async function POST(request) {
-  const { title, content } = await request.json();
-  const post = await prisma.post.create({
-    data: { title, content },
-  });
-  return new Response(JSON.stringify(post), {
-    status: 201,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-}
