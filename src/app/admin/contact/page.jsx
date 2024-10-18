@@ -41,7 +41,7 @@ const AdminPage = () => {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-4">Admin Paneli</h1>
+      <h1 className="text-3xl font-bold mb-4">İletişim Gelen Kutusu</h1>
       {error && <p className="text-red-600">{error}</p>}
       <table className="min-w-full bg-white border border-gray-300">
         <thead>

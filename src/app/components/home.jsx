@@ -6,6 +6,15 @@ export const HomePage = () => {
   const menuItems = [{ name: "Teknoloji" }];
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const getFirstFiveWords = (html) => {
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = html; // HTML içeriğini geçici bir elemanda ayarlıyoruz
+    const textContent = tempElement.textContent || tempElement.innerText; // Metin içeriğini al
+    const words = textContent.split(" ").slice(0, 5);
+    return words.join(" ") + (words.length === 5 ? "..." : ""); // Eğer 5 kelime varsa, '...' ekleyin
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -24,7 +33,10 @@ export const HomePage = () => {
 
     fetchPosts();
   }, []);
+
   if (loading) return <Loading />;
+  if (error) return <div>Hata: {error}</div>;
+
   return (
     <div className="container mx-auto p-8 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
       <header className="mb-8 text-center">
@@ -43,8 +55,8 @@ export const HomePage = () => {
               className="p-4 rounded shadow bg-gray-100 dark:bg-gray-800"
             >
               <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-              <p className="mb-4">{post.content}</p>
-
+              <p>{getFirstFiveWords(post.content)}</p>{" "}
+              {/* İlk 5 kelimeyi göster */}
               <Link
                 className="hover:underline cursor-pointer text-blue-600 dark:text-blue-400"
                 href={`/posts/${post.id}`}

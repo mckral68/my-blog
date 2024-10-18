@@ -1,13 +1,12 @@
 "use client";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await signIn("credentials", {
@@ -15,9 +14,8 @@ export default function Login() {
       username,
       password,
     });
-
     if (result.ok) {
-      router.push("/admin"); // Başarılı girişte yönlendir
+      router.push("/admin");
     } else {
       alert("Hatalı kullanıcı adı veya şifre!");
     }

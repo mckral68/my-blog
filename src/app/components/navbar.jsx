@@ -3,24 +3,26 @@ import Link from "next/link";
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi"; // Hamburger ikonu için import
 import ThemeSwitch from "./ThemeSwitch";
+import SessionCheck from "./SessionCheck";
+import LogoutButton from "./LogoutButton";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const isSessionValid = SessionCheck(); // Session kontrolü
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
   const menuItems = [
     { name: "Ana Sayfa", href: "/" },
     { name: "Hakkında", href: "/about" },
     { name: "Gönderi", href: "/posts" },
     { name: "İletişim", href: "/contact" },
   ];
-
+  const adminMenuItems = [
+    { name: "Ana Sayfa", href: "/" },
+    { name: "Yönetim Paneli", href: "/admin" },
+    { name: "Gönderiler", href: "/admin/posts" },
+    { name: "Mesajlar", href: "/admin/contact" },
+  ];
   return (
     <nav className="bg-gray-800 dark:bg-gray-900 p-4 relative">
       <div className="container mx-auto flex justify-between items-center">
@@ -39,15 +41,26 @@ const Navbar = () => {
         </div>
         {/* Masaüstü Menü Öğeleri */}
         <div className="hidden md:flex space-x-4">
-          {menuItems.map((item, index) => (
-            <Link
-              href={item.href}
-              key={index}
-              className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
-            >
-              {item.name}
-            </Link>
-          ))}
+          {!isSessionValid &&
+            menuItems.map((item, index) => (
+              <Link
+                href={item.href}
+                key={index}
+                className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+              >
+                {item.name}
+              </Link>
+            ))}
+          {isSessionValid &&
+            adminMenuItems.map((item, index) => (
+              <Link
+                href={item.href}
+                key={index}
+                className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+              >
+                {item.name}
+              </Link>
+            ))}
         </div>
       </div>
       {/* Mobil Menü */}
@@ -66,16 +79,29 @@ const Navbar = () => {
           </button>
         </div>
         <ul className="flex flex-col space-y-4 p-4">
-          {menuItems.map((item, index) => (
-            <Link
-              onClick={closeMenu}
-              href={item.href}
-              key={index}
-              className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
-            >
-              {item.name}
-            </Link>
-          ))}
+          {!isSessionValid &&
+            menuItems.map((item, index) => (
+              <Link
+                href={item.href}
+                onClick={toggleMenu}
+                key={index}
+                className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+              >
+                {item.name}
+              </Link>
+            ))}
+          {isSessionValid &&
+            adminMenuItems.map((item, index) => (
+              <Link
+                href={item.href}
+                onClick={toggleMenu}
+                key={index}
+                className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+              >
+                {item.name}
+              </Link>
+            ))}
+          {isSessionValid && <LogoutButton />}
         </ul>
       </div>
     </nav>
