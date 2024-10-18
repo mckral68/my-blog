@@ -1,10 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 import Loading from "./../components/loading";
 import { useRouter } from "next/navigation";
-
 export default function AdminDashboard() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -15,7 +13,6 @@ export default function AdminDashboard() {
   const [posts, setPosts] = useState([]);
   const [editingPostId, setEditingPostId] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (status === "loading") return;

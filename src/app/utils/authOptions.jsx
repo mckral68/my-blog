@@ -34,5 +34,10 @@ export const authOptions = {
   },
   session: {
     strategy: "jwt", // JWT kullan
+    maxAge: 30 * 24 * 60 * 60, // 30 gün
+    updateAge: 24 * 60 * 60, // 24 saat
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET, // JWT gizli anahtar
   },
 };
