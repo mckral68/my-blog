@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { FiMenu } from "react-icons/fi"; // Hamburger ikonu için import
 import ThemeSwitch from "./ThemeSwitch";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +34,7 @@ const Navbar = () => {
             onClick={toggleMenu}
             className="text-gray-300 focus:outline-none"
           >
-            Menü
+            <FiMenu className="w-6 h-6" /> {/* Hamburger ikonu */}
           </button>
         </div>
         {/* Masaüstü Menü Öğeleri */}

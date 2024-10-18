@@ -113,7 +113,6 @@ const ContactPage = () => {
       <div className="mt-8">
         <h2 className="text-2xl font-bold">Bize Ulaşın</h2>
         <div className="mt-4">
-          <p className="text-gray-700 dark:text-gray-300">Sosyal Medya:</p>
           <ul className="flex space-x-2 mt-2">
             <SocialMediaButons />
           </ul>
