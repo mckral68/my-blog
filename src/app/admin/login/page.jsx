@@ -7,6 +7,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await signIn("credentials", {
@@ -17,7 +18,7 @@ export default function Login() {
     if (result?.error) {
       alert("Hatalı kullanıcı adı veya şifre!"); // Hata durumunu kontrol edin
     } else if (result.ok) {
-      router.replace("/admin");
+      router.push("/admin");
     }
   };
 
