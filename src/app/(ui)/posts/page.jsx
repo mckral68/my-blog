@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -26,7 +27,12 @@ export default function Home() {
             className="p-6 border border-gray-300 rounded-lg shadow hover:shadow-xl transition-shadow duration-300 "
           >
             <h2 className="text-2xl font-semibold mb-3">{post.title}</h2>
-          </li>
+            <Link href={`/posts/${post.id}`}>
+              <button className="mt-4 bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 transition duration-200">
+                Detayları Göster
+              </button>
+            </Link>
+          </li> 
         ))}
       </ul>
     </div>

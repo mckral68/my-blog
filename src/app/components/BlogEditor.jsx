@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
-import ReactQuill from "react-quill-new";
+import { useEffect, useState, useMemo } from "react";
 import "react-quill-new/dist/quill.snow.css";
-
+import dynamic from "next/dynamic";
 const BlogEditor = ({ content, onChange }) => {
   const [editorHtml, setEditorHtml] = useState("");
-
+  const ReactQuill = useMemo(
+    () => dynamic(() => import("react-quill-new"), { ssr: false }),
+    []
+  );
   useEffect(() => {
     if (content) {
       setEditorHtml(content); // Gelen içerik ile editoru güncelle
