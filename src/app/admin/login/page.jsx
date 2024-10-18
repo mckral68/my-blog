@@ -17,7 +17,7 @@ export default function Login() {
     if (result?.error) {
       alert("Hatalı kullanıcı adı veya şifre!"); // Hata durumunu kontrol edin
     } else if (result.ok) {
-      router.push("/admin");
+      router.replace("/admin");
     }
   };
 
