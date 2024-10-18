@@ -4,8 +4,10 @@ import { NextResponse } from "next/server";
 export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   console.log(token);
-
   const loginPage = "/admin/login";
+  if (token && req.nextUrl.pathname.startsWith(loginPage)) {
+    return NextResponse.redirect(new URL("/admin", req.url));
+  }
   if (!token) {
     // Eğer kullanıcı giriş sayfasındaysa, isteğe devam et
     if (req.nextUrl.pathname.startsWith(loginPage)) {
