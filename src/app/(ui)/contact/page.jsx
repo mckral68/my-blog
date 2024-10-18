@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import SocialMediaButons from "./../components/SocialMediaButons";
+import SocialMediaButons from "@/app/components/SocialMediaButons";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({

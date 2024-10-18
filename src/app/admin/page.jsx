@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Loading from "./../components/loading";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 export default function AdminDashboard() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -15,7 +17,6 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (status === "loading") return;
     if (!session) {
       router.push("/admin/login");
     } else {

@@ -1,4 +1,4 @@
-import prisma from "../../lib/prisma"; // Prisma client'ınızı doğru bir şekilde içe aktarın
+import prisma from "@/app/lib/prisma"; // Prisma client'ınızı doğru bir şekilde içe aktarın
 
 export async function POST(req) {
   const { name, email, message } = await req.json();
