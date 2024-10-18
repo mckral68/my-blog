@@ -22,7 +22,8 @@ export const authOptions = {
           credentials.username === "oguz" &&
           credentials.password === "C3q7654321."
         ) {
-          return { id: 1, name: "Admin" }; // Başarılı girişte döndürülmesi gereken kullanıcı verisi
+          const user = { id: 1, name: "Admin" }; // Burayı güncelleyin
+          return user ? Promise.resolve(user) : Promise.resolve(null);
         } else {
           return null; // Başarısız giriş
         }
@@ -31,6 +32,18 @@ export const authOptions = {
   ],
   pages: {
     signIn: "/admin/login", // Giriş sayfasının yolu
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id; // Kullanıcı bilgilerini token'a ekleyin
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id; // Token'dan kullanıcı bilgilerini al
+      return session;
+    },
   },
   session: {
     strategy: "jwt", // JWT kullan

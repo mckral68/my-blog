@@ -14,10 +14,10 @@ export default function Login() {
       username,
       password,
     });
-    if (result.ok) {
+    if (result?.error) {
+      alert("Hatalı kullanıcı adı veya şifre!"); // Hata durumunu kontrol edin
+    } else if (result.ok) {
       router.push("/admin");
-    } else {
-      alert("Hatalı kullanıcı adı veya şifre!");
     }
   };
 

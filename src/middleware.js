@@ -4,14 +4,21 @@ import { NextResponse } from "next/server";
 export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const loginPage = "/admin/login";
-  if (!token && req.nextUrl.pathname == "/admin/login") {
-    return NextResponse.next();
-  }
-  if (!token && req.nextUrl.pathname.startsWith("/admin")) {
-    return NextResponse.redirect(new URL(loginPage, req.url));
+  if (!token) {
+    // Eğer kullanıcı giriş sayfasındaysa, isteğe devam et
+    if (req.nextUrl.pathname.startsWith(loginPage)) {
+      return NextResponse.next();
+    }
+    
+    // Eğer kullanıcı admin sayfalarındaysa, giriş sayfasına yönlendir
+    if (req.nextUrl.pathname.startsWith("/admin")) {
+      console.log("Token yok, giriş sayfasına yönlendiriliyor...");
+      return NextResponse.redirect(new URL(loginPage, req.url));
+    }
   }
 
-  return NextResponse.next(); // İzin ver
+  // Eğer token varsa, isteğe devam et
+  return NextResponse.next();
 }
 
 export const config = {

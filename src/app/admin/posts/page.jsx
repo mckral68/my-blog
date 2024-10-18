@@ -73,7 +73,7 @@ const Page = () => {
     setEditingPostId(post.id);
   };
   const handleContentChange = (value) => {
-    setFormData((prev) => ({ ...prev, content: value })); // Quill içeriğini güncelle
+    setFormData((prev) => ({ ...prev, content: value }));
   };
   const handleDelete = async (id) => {
     setLoading(true);
@@ -106,7 +106,6 @@ const Page = () => {
           required
         />
         <BlogEditor content={formData.content} onChange={handleContentChange} />
-
         <button
           type="submit"
           className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-200"
