@@ -80,30 +80,32 @@ const Navbar = () => {
           </button>
         </div>
         <ul className="flex flex-col space-y-4 p-4">
-          {!isSessionValid &&
-            menuItems.map((item, index) => (
-              <Link
-                href={item.href}
-                onClick={toggleMenu}
-                key={index}
-                className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
-              >
-                {item.name}
-              </Link>
-            ))}
-          {isSessionValid &&
-            adminMenuItems.map((item, index) => (
-              <Link
-                href={item.href}
-                onClick={toggleMenu}
-                key={index}
-                className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
-              >
-                {item.name}
-              </Link>
-            ))}
-          {isSessionValid && <LogoutButton />}
-        </ul>
+  {!isSessionValid &&
+    menuItems.map((item, index) => (
+      <li key={index}>
+        <Link
+          href={item.href}
+          onClick={toggleMenu}
+          className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+        >
+          {item.name}
+        </Link>
+      </li>
+    ))}
+  {isSessionValid &&
+    adminMenuItems.map((item, index) => (
+      <li key={index}>
+        <Link
+          href={item.href}
+          onClick={toggleMenu}
+          className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+        >
+          {item.name}
+        </Link>
+      </li>
+    ))}
+  {isSessionValid && <li><LogoutButton /></li>}
+</ul>
       </div>
     </nav>
   );
