@@ -37,7 +37,7 @@ const SocialMediaButtons = () => {
             <Link
               target="_blank"
               href={link.href}
-              className="text-blue-500 hover:underline dark:text-blue-400"
+              className="text-blue-700 hover:underline dark:text-blue-300"
             >
               {link.name}
             </Link>
