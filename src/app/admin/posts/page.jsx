@@ -57,7 +57,7 @@ const Page = () => {
       } else {
         setPosts([...posts, newPost]);
       }
-      setFormData({ title: "", content: "", link: "" });
+      setFormData({ title: "", content: "" });
       setEditingPostId(null);
     } else {
       console.error("Failed to save post");
