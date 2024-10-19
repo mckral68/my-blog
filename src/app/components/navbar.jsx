@@ -69,7 +69,7 @@ const Navbar = () => {
       <div
         className={`fixed inset-y-0 left-0 bg-gray-800 dark:bg-gray-900 transition-transform transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:hidden w-2/3`}
+        } md:hidden w-2/3 z-50`} // Z-index ekledik
       >
         <div className="flex justify-between items-center p-4">
           <div className="text-white text-lg font-bold">Menü</div>
@@ -81,32 +81,36 @@ const Navbar = () => {
           </button>
         </div>
         <ul className="flex flex-col space-y-4 p-4">
-  {!isSessionValid &&
-    menuItems.map((item, index) => (
-      <li key={index}>
-        <Link
-          href={item.href}
-          onClick={toggleMenu}
-          className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
-        >
-          {item.name}
-        </Link>
-      </li>
-    ))}
-  {isSessionValid &&
-    adminMenuItems.map((item, index) => (
-      <li key={index}>
-        <Link
-          href={item.href}
-          onClick={toggleMenu}
-          className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
-        >
-          {item.name}
-        </Link>
-      </li>
-    ))}
-  {isSessionValid && <li><LogoutButton /></li>}
-</ul>
+          {!isSessionValid &&
+            menuItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.href}
+                  onClick={toggleMenu}
+                  className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          {isSessionValid &&
+            adminMenuItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.href}
+                  onClick={toggleMenu}
+                  className="text-gray-300 hover:text-white dark:text-gray-200 dark:hover:text-white"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          {isSessionValid && (
+            <li>
+              <LogoutButton />
+            </li>
+          )}
+        </ul>
       </div>
     </nav>
   );

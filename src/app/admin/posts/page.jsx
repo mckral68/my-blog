@@ -7,7 +7,6 @@ const Page = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    link: "",
   });
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -102,7 +101,7 @@ const Page = () => {
           placeholder="Başlık"
           value={formData.title}
           onChange={handleChange}
-          className="border p-2 w-full mb-2 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+          className="border border-gray-300 dark:border-gray-700 p-2 w-full mb-2 rounded-md focus:outline-none focus:ring focus:ring-blue-300 dark:focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
           required
         />
         <BlogEditor content={formData.content} onChange={handleContentChange} />
@@ -117,10 +116,12 @@ const Page = () => {
         {posts.map((post) => (
           <li
             key={post.id}
-            className="my-2 p-4 border rounded-md shadow-sm bg-white flex justify-between items-center"
+            className="my-2 p-4 border rounded-md shadow-sm bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 flex justify-between items-center"
           >
             <div>
-              <h2 className="font-semibold">{post.title}</h2>
+              <h2 className="font-semibold text-gray-900 dark:text-white">
+                {post.title}
+              </h2>
             </div>
             <div className="flex space-x-2">
               <button

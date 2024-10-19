@@ -32,7 +32,7 @@ export default function Home() {
                 Detayları Göster
               </button>
             </Link>
-          </li> 
+          </li>
         ))}
       </ul>
     </div>

@@ -1,8 +1,12 @@
 import prisma from "@/app//lib/prisma";
 export async function GET() {
-  debugger;
-
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    select: {
+      id: true,
+      title: true,
+      content: true,
+    },
+  });
   return new Response(JSON.stringify(posts), {
     status: 200,
     headers: {
@@ -11,7 +15,6 @@ export async function GET() {
   });
 }
 export async function POST(req) {
-  debugger;
   const { title, content } = await req.json(); // İstekten JSON verilerini al
   try {
     const newPost = await prisma.post.create({
