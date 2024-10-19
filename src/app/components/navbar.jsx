@@ -34,6 +34,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
+            aria-labelledby="toggle-menu"
             className="text-gray-300 focus:outline-none"
           >
             <FiMenu className="w-6 h-6" /> {/* Hamburger ikonu */}
