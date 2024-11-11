@@ -6,12 +6,13 @@ export async function middleware(req) {
   const loginPage = new URL("/admin/login", req.url).toString();
 
   // Eğer token yoksa kullanıcıyı giriş sayfasına yönlendir
-  if (req.nextUrl.pathname === "/admin/login") {
+/*  if (req.nextUrl.pathname === "/admin/login") {
     return NextResponse.next();
   }
   if (!token) {
     return NextResponse.redirect(loginPage);
-  }
+ } 
+ */
   // Diğer sayfalara isteğe devam et
   return NextResponse.next();
 }
