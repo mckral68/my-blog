@@ -10,7 +10,7 @@ const AdminPage = () => {
             Gönderiler
           </Link>
           <br />
-          <Link href="/admin/contacts" className="text-blue-500 dark:text-blue-400 hover:underline">
+          <Link href="/admin/contact" className="text-blue-500 dark:text-blue-400 hover:underline">
             Mesajlar
           </Link>
         </div>
